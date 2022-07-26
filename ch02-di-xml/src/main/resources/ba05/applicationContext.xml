@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        引用类型的自动注入
+            只针对引用类型
+                byName
+                        java类中引用类型的属性名 和spring容器中的id是一样的
+                        且数据类型一致 spring 会自动赋值
+
+                     语法
+                        <bean id="xxx" class="xxx" autowire="byName">
+                        </bean>
+                byTime  按类型注入 : java类中引用数据类型和spring容器中的<bean>
+                        的class属性是同源关系的  这样的bean能够赋值给引用类型
+                       同源就是一类的: 1 java 类中的数据类型和class的值是一样的
+                                    2 java 类中的数据类型和bean中的class是父子类关系
+                                    3 java 类中的数据类型和bean中的class是接口和实现类关系
+                                有多个同源类时不行
+                                        应该用byName
+    -->
+
+
+
+    <bean id="myStudent" class="com.bjpowernode.ba05.Student" autowire="byType">
+        <property name="name" value="张三"></property>
+        <property name="age" value="20"></property>
+        <!--引用类型-->
+        <!--<property name="school" ref="mySchool"></property>-->
+    </bean>
+
+    <!--<bean id="mySchool" class="com.bjpowernode.ba05.School">
+        <property name="name" value="山大"></property>
+        <property name="address" value="济南"></property>
+    </bean>-->
+
+    <bean id="primarySchool" class="com.bjpowernode.ba05.PrimarySchool">
+        <property name="name" value="小学"></property>
+        <property name="address" value="济南"></property>
+    </bean>
+
+
+
+    
+
+</beans>
