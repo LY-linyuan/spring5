@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--声明student对象
+        给属性赋值
+            1. set(注入) 设值注入
+                调用set方法
+          简单类型
+                <bean id="myStudent" class="com.bjpowernode.ba01.Student">
+                            <property name="name" value="张三"></property>
+                    </bean>
+
+
+             2 引用类型的注入
+             <bean id="myStudent" class="com.bjpowernode.ba01.Student">
+                            <property name="name" value="张三"></property>
+                            <property name="属性名称" value="bean的Id"></property>
+                    </bean>
+
+    -->
+    <bean id="myStudent" class="com.bjpowernode.ba02.Student">
+        <property name="name" value="张三"></property>
+        <property name="age" value="20"></property>
+        <!--引用类型-->
+        <property name="school" ref="mySchool"></property>
+    </bean>
+
+    <bean id="mySchool" class="com.bjpowernode.ba02.School">
+        <property name="name" value="山大"></property>
+        <property name="address" value="山东"></property>
+    </bean>
+
+    
+
+</beans>

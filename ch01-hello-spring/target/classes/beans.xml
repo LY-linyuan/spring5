@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+            告诉spring创建对象
+                声明bean  告诉审判日那还要创建某个类的对象
+                id :对象的额自定义名称 唯一值  spring通过这个名称找到对象
+                class : 累得全限定名称(不能是接口  应为反射机制要创建独享必须使用类)
+            spring  完成
+                SomeService someService = new SomeServiceImpl();
+            spring  把创建好的对象放到map中
+                springMap.put(id的值, 对象);
+                springMap.put(someService, new SomeServiceImpl());
+            一个bean标签声明一个java对象
+        -->
+    <bean id="someService" class="com.bjpowernode.service.impl.SomeServiceImpl"></bean>
+    <bean id="someService1" class="com.bjpowernode.service.impl.SomeServiceImpl"></bean>
+    <!--
+        创建一个非自定义对象  创建一个已经存在过S的对象
+    -->
+    <bean id="mydate" class="java.util.Date"></bean>
+
+</beans>
+<!--
+    spring的配置文件
+        1. beans : 是根标签, spring把java对象称为bean
+        2. spring-beans.xsd : 约束文件
+-->
