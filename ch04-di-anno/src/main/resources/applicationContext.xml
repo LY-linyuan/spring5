@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--声明组件扫描器  组件就是java对象
+            扫描你指定的包中的 类和子包中的类   的注解 来创建对象或者给属性赋值
+
+            加入组件  context:component-scan  会自动加入一个约束
+    -->
+    <!--<context:component-scan base-package="com.bjpowernode.ba01"></context:component-scan>-->
+    <context:component-scan base-package="com.bjpowernode.ba02"></context:component-scan>
+
+
+    <!--<bean id="myXuexiao" class="com.bjpowernode.ba03.School">
+        <property name="name" value="山大"></property>
+        <property name="address" value="山东"></property>
+    </bean>-->
+
+    <!--加载属性配置文件-->
+    <context:property-placeholder location="classpath:test.properties"></context:property-placeholder>
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--声明组件扫描器  组件就是java对象
+            扫描你指定的包中的 类和子包中的类   的注解 来创建对象或者给属性赋值
+
+            加入组件  context:component-scan  会自动加入一个约束
+    -->
+    <context:component-scan base-package="com.bjpowernode.ba01"></context:component-scan>
+    <!--制定多个包的三种方式-->
+    <!--1  多次组件扫描器-->
+    <!--<context:component-scan base-package="com.bjpowernode.ba01"></context:component-scan>
+    <context:component-scan base-package="com.bjpowernode.ba02"></context:component-scan>-->
+    <!--2 分隔符 ; , 都可以-->
+    <!--<context:component-scan base-package="com.bjpowernode.ba01;com.bjpowernode.ba02"></context:component-scan>
+    <context:component-scan base-package="com.bjpowernode.ba01,com.bjpowernode.ba02"></context:component-scan>-->
+    <!--3 指定父包-->
+    <!--<context:component-scan base-package="com.bjpowernode"></context:component-scan>-->
+
+
+</beans>

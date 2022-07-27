@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ch04-di-anno" />
+        <module name="ch05-aop-leandin" />
         <module name="ch02-di-xml" />
         <module name="ch01-hello-spring" />
       </profile>
@@ -13,6 +15,8 @@
     <bytecodeTargetLevel>
       <module name="ch01-hello-spring" target="1.8" />
       <module name="ch02-di-xml" target="1.8" />
+      <module name="ch04-di-anno" target="1.8" />
+      <module name="ch05-aop-leandin" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
