@@ -10,13 +10,15 @@
         <module name="ch05-aop-leandin" />
         <module name="ch02-di-xml" />
         <module name="ch01-hello-spring" />
+        <module name="ch06-apo-aspectj" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ch01-hello-spring" target="1.8" />
       <module name="ch02-di-xml" target="1.8" />
       <module name="ch04-di-anno" target="1.8" />
-      <module name="ch05-aop-leandin" target="8" />
+      <module name="ch05-aop-leandin" target="1.8" />
+      <module name="ch06-apo-aspectj" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -24,12 +24,15 @@ public class MyApp {
         // 创建InvocationHandler对象
         InvocationHandler handler = new MyInvocationHandler(target);
         // 创建proxy代理对象
-        SomeService service = (SomeService) Proxy.newProxyInstance(
+        SomeService proxy = (SomeService) Proxy.newProxyInstance(
                 target.getClass().getClassLoader(),
                 target.getClass().getInterfaces(), handler);
 
-        service.doSome();
+        proxy.doSome();
         System.out.println("=================================");
-        service.doOther();
+        proxy.doOther();
+
+        // com.sun.proxy.$Proxy0
+        System.out.println(proxy.getClass().getName());
     }
 }
