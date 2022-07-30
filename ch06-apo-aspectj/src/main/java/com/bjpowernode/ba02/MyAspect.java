@@ -30,7 +30,6 @@ public class MyAspect {
      *                  如果有参数 参数不是自定义的, 有几个参数类型可以使用
      */
 
-
     /**
      * @AfterReturning 后置通知
      *  属性
@@ -43,13 +42,38 @@ public class MyAspect {
      *              2. 可以获取目标方法的返回值可以根据返回值做不同处理的功能
      *              3. 可以修改这个返回值
      *        Object res = doOther();
-     * @param res
+     * @param res 目标方法返回值   这个参数名字要和  后置通知的参数名字一样
+     *
+     *            执行顺序
+     *              Object res = doOther();
+     *              一种是传值  一种是传引用
+     *              myAfterReturning(Object res)
      */
     @AfterReturning(value = "execution(* *..SomeServiceImpl.doOther(..))",
             returning = "res")
-    public void myAfterReturning(Object res) {
+    public void myAfterReturning(JoinPoint jp, Object res) {
         // res 是目标方法执行的返回值
-        System.out.println("后置通知");
+        System.out.println("否知通知方法的定义" + jp.getSignature());
+        System.out.println("后置通知" + res);
+
+        if ("abcd".equals(res)) {
+            // 做一些功能
+        } else {
+            // 其他功能
+        }
+
+        if (res != null) {
+            res = "hello Aspectj";
+        }
+    }
+
+    @AfterReturning(value = "execution(* *..SomeServiceImpl.doOther2(..))",
+            returning = "res")
+    public void myAfterReturning2(Object res) {
+        // res 是目标方法执行的返回值
+        System.out.println("后置通知" + res);
+        Student student = (Student) res;
+        student.setName("王五");
     }
 
 }

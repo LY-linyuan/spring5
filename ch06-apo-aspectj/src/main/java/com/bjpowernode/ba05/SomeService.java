@@ -1,4 +1,6 @@
-package com.bjpowernode.ba02;
+package com.bjpowernode.ba05;
+
+import com.bjpowernode.ba02.Student;
 
 /**
  * @Author 临渊
@@ -9,4 +11,10 @@ public interface SomeService {
     String doOther(String name, Integer age);
 
     Student doOther2(String name, Integer age);
+
+    String doFirst(String name, Integer age);
+
+    void doSecond();
+
+    void doThird();
 }

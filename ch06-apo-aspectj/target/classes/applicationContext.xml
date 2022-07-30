@@ -7,10 +7,10 @@
 
     <!--把对象交给spring容器  有spring容器统一创建管理对象-->
     <!--声明目标对象-->
-    <bean id="someService" class="com.bjpowernode.ba01.SomeServiceImpl"></bean>
+    <bean id="someService" class="com.bjpowernode.ba05.SomeServiceImpl"></bean>
 
     <!--声明切面类对象-->
-    <bean id="myAspect" class="com.bjpowernode.ba01.MyAspect"></bean>
+    <bean id="myAspect" class="com.bjpowernode.ba05.MyAspect"></bean>
 
     <!--声明自动代理生成器 使用的aspectj内部的功能 来创建目标对象的代理对象
         创建这个歌目标对象实际上是在内存中做的 修改目标对象内存中的结构 创建为代理对象
