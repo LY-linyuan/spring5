@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <!--把数据库的配置信息卸载一个独立的配置文件当中  便于修改数据库的配置内容
+        spring知道jdbc.properties文件的位置
+    -->
+
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!--声明数据源  作用连接数据库-->
+    <bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource" 
+          init-method="init" destroy-method="close">
+        <!--set注入  给DruidDataSource 提供数据库连接信息-->
+        <!--
+            使用属性配置文件中的数据 语法 ${key}
+        -->
+        <property name="url" value="${jdbc.url}"></property>  <!--setUrl()-->
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="maxActive" value="${jdbc.max}"></property>
+    </bean>
+    <!--声明的是 mybatis中提供的SqlSessionFactoryBean类, 这个类的内部是创建SqlSessionFactory的-->
+    <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--set注入  把数据库的连接池赋给了dataSource属性-->
+        <property name="dataSource" ref="myDataSource"></property>
+        <!--mybatis的主配置文件位置
+            configLocation 的属性是Resource类型 用来读取配置文件的
+            他的赋值使用value 指定文件路径  使用classpath: 表示文件的位置
+        -->
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
+    </bean>
+
+    <!--创建dao对象 使用SqlSession.getMapper(StudentDao.class)
+        org.mybatis.spring.mapper.MapperScannerConfigurer :
+                在内部调用getMapper()生成每个dao接口的代理对象。
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--指定SqlSessionFactory对象的id-->
+        <property name="sqlSessionFactoryBeanName" value="SqlSessionFactory"></property>
+        <!--指定dao接口所在的包名
+            MapperScannerConfigurer会扫描这个包中的所有类, 把每个接口都执行一次
+                getMapper()方法 得到每个接口的dao对象
+                创建好的dao对象方法哦spring容器中的
+                多个包可以用逗号分隔
+              创建好的dao对象放入到Spring容器中 dao对象的默认名称是接口名的首字母小写
+        -->
+        <property name="basePackage" value="com.bjpowernode.dao"></property>
+    </bean>
+    <!--声明Service-->
+    <bean id="buyService" class="com.bjpowernode.service.impl.BuyGoodsServiceImpl">
+        <property name="saleDao" ref="saleDao"></property>
+        <property name="goodsDao" ref="goodsDao"></property>
+    </bean>
+
+
+</beans>
